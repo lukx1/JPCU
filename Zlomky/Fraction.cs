@@ -29,14 +29,17 @@ namespace Zlomky
 
         public Fraction(int numerator, int denominator)
         {
-            if(denominator == 0)
-                throw new ArgumentOutOfRangeException("Denominator must not be 0");
-            var simplifiedNumbers = Simplify(numerator, denominator);
-            Numerator = simplifiedNumbers.Item1;
-            Denominator = simplifiedNumbers.Item2;
+            Numerator = numerator;
+            Denominator = denominator;
         }
 
-        private Tuple<int,int> Simplify(int a, int b)
+        public static Fraction Simplify(Fraction f)
+        {
+            var t = SimplifyInts(f.Numerator, f.Denominator);
+            return new Fraction(t.Item1, t.Item2);
+        }
+
+        private static Tuple<int,int> SimplifyInts(int a, int b)
         {
             int gcd = FindGCD(a, b);
             int twoMinuses = a < 0 && b < 0 ? -1 : 1; //Removes minuses if they are in num and denom
@@ -53,12 +56,17 @@ namespace Zlomky
             return ((double)Numerator) / (Denominator);
         }
 
+        public decimal ToDecimal()
+        {
+            return new decimal(Numerator) / new decimal(Denominator);
+        }
+
         public int ToInt()
         {
             return Numerator / Denominator;
         }
 
-        private static int FindGCD(int a, int b)
+        /*private static int FindGCD(int a, int b)
         {
             while (a != 0 && b != 0)
             {
@@ -70,14 +78,35 @@ namespace Zlomky
 
             return a == 0 ? b : a;
         }
+        */
+        private static int FindGCD(int ao, int bo)
+        {
+            var a = Math.Abs(ao);
+            var b = Math.Abs(bo);
+
+            while (a != 0 && b != 0)
+            {
+                if (a > b)
+                    a %= b;
+                else
+                    b %= a;
+            }
+
+            return a == 0 ? b : a;
+        }
+
+        private static int FindLCM(int a, int b)
+        {
+            return a * b / FindGCD(a, b);
+        }
 
         public static Fraction operator +(Fraction a, Fraction b)
         {
-            int GCD = FindGCD(a.Denominator, a.Denominator);
+            int LCM = FindLCM(a.Denominator, b.Denominator);
             return new Fraction
                 (
-                a.Numerator*(GCD/a.Denominator)+ b.Numerator * (GCD / b.Denominator),
-                GCD
+                a.Numerator*(LCM/a.Denominator)+ b.Numerator * (LCM / b.Denominator),
+                LCM
                 );
         }
 
@@ -92,11 +121,11 @@ namespace Zlomky
 
         public static Fraction operator -(Fraction a, Fraction b)
         {
-            int GCD = FindGCD(a.Denominator, a.Denominator);
+            int LCM = FindLCM(a.Denominator, b.Denominator);
             return new Fraction
                 (
-                a.Numerator * (GCD / a.Denominator) - b.Numerator * (GCD / b.Denominator),
-                GCD
+                a.Numerator * (LCM / a.Denominator) - b.Numerator * (LCM / b.Denominator),
+                LCM
                 );
         }
 
@@ -143,6 +172,28 @@ namespace Zlomky
                 a.Numerator,
                 a.Denominator*b
                 );
+        }
+
+        public static bool operator ==(Fraction a, double b)
+        {
+            return a.ToDouble() == b;
+        }
+
+        public static bool operator !=(Fraction a, double b)
+        {
+            return a.ToDouble() != b;
+        }
+
+        public static bool operator == (Fraction a, Fraction b)
+        {
+            var sa = Simplify(a);
+            var sb = Simplify(b);
+            return sa.Numerator == sb.Numerator && sa.Denominator == sb.Denominator;
+        }
+
+        public static bool operator !=(Fraction a, Fraction b)
+        {
+            return !(a == b);
         }
 
     }
