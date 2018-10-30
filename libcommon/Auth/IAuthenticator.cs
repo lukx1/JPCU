@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace libcommon
 {
-    public class Class1
+    public interface IAuthenticator
     {
+        IUserDB UserDB { get; set; }
+        UserInfo Login(string userName, string password);
     }
 }

@@ -41,10 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="MyTree.cs" />
-    <Compile Include="MyTreeNode.cs" />
+    <Compile Include="Auth\Authenticator.cs" />
+    <Compile Include="Auth\IAuthenticator.cs" />
+    <Compile Include="Auth\InvalidPasswordException.cs" />
+    <Compile Include="Auth\InvalidUserException.cs" />
+    <Compile Include="Auth\IUserDB.cs" />
+    <Compile Include="Sorting\Sorts.cs" />
+    <Compile Include="Tree\MyTree.cs" />
+    <Compile Include="Tree\MyTreeNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Auth\UserDB.cs" />
+    <Compile Include="Auth\UserInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

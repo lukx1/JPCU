@@ -17,14 +17,13 @@ namespace Zlomky
                 _Denominator = value;
             } }
 
-        public Fraction()
+        public Fraction() : this(0,1)
         {
-            Numerator = 0;
         }
 
-        public Fraction(int numerator)
+        public Fraction(int numerator) : this(numerator,1)
         {
-            Numerator = numerator;
+
         }
 
         public Fraction(int numerator, int denominator)
@@ -167,6 +166,8 @@ namespace Zlomky
 
         public static Fraction operator /(Fraction a, int b)
         {
+            if (b == 0)
+                throw new DivideByZeroException("Can't divide by zero");
             return new Fraction
                 (
                 a.Numerator,
@@ -196,5 +197,22 @@ namespace Zlomky
             return !(a == b);
         }
 
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Fraction))
+            {
+                return false;
+            }
+
+            return (((Fraction)obj).Denominator == this.Denominator && ((Fraction)obj).Numerator == this.Numerator);
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = -1534900553;
+            hashCode = hashCode * -1521134295 + Numerator.GetHashCode();
+            hashCode = hashCode * -1521134295 + Denominator.GetHashCode();
+            return hashCode;
+        }
     }
 }
