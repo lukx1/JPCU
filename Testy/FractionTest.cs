@@ -24,15 +24,6 @@ namespace Testy
             f.Denominator = 0;
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException),
-        "Denominator = 0 was allowed")]
-        public void ZeroDiv()
-        {
-            var f = new Fraction(1, 1);
-            var r = f / 0;
-        }
-
         /// <summary>
         /// Gets greatest common divisor
         /// </summary>

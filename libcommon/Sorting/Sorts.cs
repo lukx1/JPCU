@@ -11,10 +11,10 @@ namespace libcommon.Sorting
 
         public static void MergeSort(int[] arr)
         {
-            MergeSort(arr, 0, arr.Length);
+            MergeSort(arr, 0, arr.Length-1);
         }
 
-        private static void Merge(int[] arr, int left,int mid, int right)
+        private static void Merge(int[] arr, int left, int mid, int right)
         {
             int[] larr = new int[mid - left + 1];
             int[] rarr = new int[right - mid];
@@ -23,6 +23,7 @@ namespace libcommon.Sorting
             {
                 larr[i] = arr[left + i];
             }
+
             for (int i = 0; i < rarr.Length; i++)
             {
                 rarr[i] = arr[mid + 1 + i];
@@ -31,10 +32,10 @@ namespace libcommon.Sorting
             int lpos = 0;
             int rpos = 0;
             int opos = left;
-            
-            while(lpos < larr.Length && rpos < rarr.Length)
+
+            while (lpos < larr.Length && rpos < rarr.Length)
             {
-                if(larr[lpos] <= rarr[rpos])
+                if (larr[lpos] <= rarr[rpos])
                 {
                     arr[opos++] = larr[lpos++];
                 }
@@ -55,18 +56,18 @@ namespace libcommon.Sorting
             }
         }
 
-        private static void MergeSort(int[] arr,int left,int right)
+        private static void MergeSort(int[] arr, int left, int right)
         {
-            if (right > 1)
+
+            
+            if (left < right)
             {
                 int mid = (left + right) / 2;
-                if (left < right)
-                {
-                    MergeSort(arr, left, mid);
-                    MergeSort(arr, mid + 1, right);
-                    Merge(arr, left, mid, right);
-                }
+                MergeSort(arr, left, mid);
+                MergeSort(arr, mid + 1, right);
+                Merge(arr, left, mid, right);
             }
+
         }
     }
 }

@@ -69,13 +69,57 @@ namespace Testy
             return true;
         }
 
-        [TestMethod]
-        public void MergeSort()
+        private bool AreElementsIdentical(int[] a, int[] b)
         {
-            int[] testArr = new int[] { 1, 7, 5, 3, 8, 6, 4, 1, 2 };
+            if (a.Length != b.Length)
+                return false;
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] != b[i])
+                    return false;
+            }
+            return true;
+        }
+
+        [TestMethod]
+        public void MergeSort1()
+        {
+            int[] testArr = new int[] { 8,3,5,7 };
+            Sorts.MergeSort(testArr);
+            Assert.IsTrue(AreElementsIdentical(testArr, new int[] { 3, 5, 7, 8 }));
+        }
+
+        [TestMethod]
+        public void MergeSort2()
+        {
+            int[] testArr = new int[] { 1, 7, 5, 3, 8, 6, 4, 1, 2, 9 };
             Sorts.MergeSort(testArr);
             Assert.IsTrue(IsSorted(testArr));
-            Console.WriteLine();
         }
+
+        [TestMethod]
+        public void MergeSort3()
+        {
+            int[] testArr = new int[] { -8, 3, 5, 7,2 };
+            Sorts.MergeSort(testArr);
+            Assert.IsTrue(AreElementsIdentical(testArr, new int[] { -8,2,3,5,7 }));
+        }
+
+        [TestMethod]
+        public void MergeSort4()
+        {
+            int[] testArr = new int[] { 1,2,3,4,5 };
+            Sorts.MergeSort(testArr);
+            Assert.IsTrue(AreElementsIdentical(testArr, new int[] { 1,2,3,4,5 }));
+        }
+
+        [TestMethod]
+        public void MergeSort5()
+        {
+            int[] testArr = new int[] { 5,4,3,2,1 };
+            Sorts.MergeSort(testArr);
+            Assert.IsTrue(AreElementsIdentical(testArr, new int[] { 1, 2, 3, 4, 5 }));
+        }
+
     }
 }
