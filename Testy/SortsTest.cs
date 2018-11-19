@@ -90,7 +90,7 @@ namespace Testy
         }
 
         [TestMethod]
-        public void MergeSort2()
+        public void MergeSortLarge()
         {
             int[] testArr = new int[] { 1, 7, 5, 3, 8, 6, 4, 1, 2, 9 };
             Sorts.MergeSort(testArr);
@@ -98,7 +98,7 @@ namespace Testy
         }
 
         [TestMethod]
-        public void MergeSort3()
+        public void MergeSortNegative()
         {
             int[] testArr = new int[] { -8, 3, 5, 7,2 };
             Sorts.MergeSort(testArr);
@@ -106,19 +106,44 @@ namespace Testy
         }
 
         [TestMethod]
-        public void MergeSort4()
+        public void MergeSortSorted()
         {
             int[] testArr = new int[] { 1,2,3,4,5 };
             Sorts.MergeSort(testArr);
             Assert.IsTrue(AreElementsIdentical(testArr, new int[] { 1,2,3,4,5 }));
         }
 
+        
+
         [TestMethod]
-        public void MergeSort5()
+        public void MergeSortReversed()
         {
             int[] testArr = new int[] { 5,4,3,2,1 };
             Sorts.MergeSort(testArr);
             Assert.IsTrue(AreElementsIdentical(testArr, new int[] { 1, 2, 3, 4, 5 }));
+        }
+
+        private class Person
+        {
+            public string Name = "";
+            public int Age = 0;
+        }
+
+
+        [TestMethod]
+        public void MergeSortOrder()
+        {
+            Person[] testArr = new Person[] 
+            {
+                new Person() { Name = "Bob", Age = 10 },
+                new Person() { Name = "Alice", Age = 10 },
+                new Person() { Name = "Ron", Age = 5}
+
+            };
+            Sorts.MergeSort(testArr, (Person a, Person b) => a.Age >= b.Age);
+            Assert.IsTrue(testArr[0].Name == "Bob");
+            Assert.IsTrue(testArr[1].Name == "Alice");
+            Assert.IsTrue(testArr[2].Name == "Ron");
         }
 
     }
