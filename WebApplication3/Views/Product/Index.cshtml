@@ -1,0 +1,47 @@
+﻿@using WebApplication3.Models;
+
+@{
+    ViewBag.Title = "Products";
+    ICollection<Product> Products = ViewBag.p;
+    ICollection<ProductCategory> Categories = ViewBag.pc;
+    int cols = 4;
+    int rows = Categories.Count;
+}
+
+<div id="CenterBlogBar">
+    SINGLE POST
+</div>
+<div>
+    <div class="col-lg-3">
+
+    </div>
+    <div class="col-lg-6">
+        <div id="ProductHolder" style=
+             "
+             display:grid;
+             grid-template-columns: repeat(@cols, 1fr);
+             grid-template-rows: repeat(@rows, 1fr)
+             ">
+            @foreach (var category in Categories)
+            {
+                <div class="ProductCategory ProductCell">
+                    <article>
+                        <h1>@category.Name</h1>
+                        <p>@category.Description</p>
+                    </article>
+                </div>
+                foreach (var product in Products.Where(r => r.ProductCategory == category))
+                {
+                    <div class="Product ProductCell">
+                        <img src="@Url.Content("~/Content/img/")@product.Picture" />
+                        <h2>@product.Name</h2>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="col-lg-3">
+
+    </div>
+</div>
+

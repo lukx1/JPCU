@@ -17,12 +17,106 @@ header {
     float: right;
 }
 
+#ProductHolder  {
+    width:100%;
+
+}
+
+.ProductCell {
+    height:100%;
+    margin:6px;
+    padding:6px;
+}
+
+.Product h2{
+    color:pink;
+}
+
+.ProductCategory h1 {
+    color:pink;
+}
+
+.TallBlogPost a {
+    background-color: green !important;
+}
+
+.TallBlogPost h2 {
+    color: pink;
+}
+
+.TallBlogPost h1 {
+    color:pink;
+}
+
+.TallBlogPost {
+    width:100%;
+    text-align:center;
+}
+
+#NextPosts {
+    float:left;
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+    text-align:center;
+    display:block;
+}
+
+#CenterBlogHolder {
+    width: 100%;
+    float: left;
+}
+
+.TallBlogPost article {
+    max-height: 4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.BlogPostTopPart article {
+    max-height: 6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.BlogPostTopPart {
+    
+    padding:12px 0px;
+    height:auto;
+    display:block;
+}
+
+.BlogPostTopPart {
+    width: 100%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    float: left;
+}
+
+.BlogHR {
+    display: block;
+    margin-top:2em;
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+}
+
+.BlogPostBottomPart {
+    grid-template-columns: 1fr 3fr;
+    float: left;
+}
+
+.BlogPostTopPart img {
+    display: inline;
+}
 
 #TopHolder div {
     display: inline-block;
     color: darkgray;
     font-size: 100%;
-
     padding-right: 75px;
 }
 
@@ -111,6 +205,13 @@ header div {
     padding-bottom: 60px;
     background: #EAE7E8 url("img/Brightness_Contrast 31.png") bottom no-repeat;
 }
+.BlogPostTopPart h2 {
+    color:pink;
+}
+
+.BlogPostTopPart a {
+    background-color:green !important;
+}
 
 footer {
     float: left;
@@ -124,9 +225,6 @@ footer {
     text-align: center;
 }
 
-#BottomIconHolder {
-
-}
 
 #CenterBlogBar {
     width: 100%;

@@ -1,0 +1,30 @@
+﻿@model WebApplication3.Models.BlogPost
+@using WebApplication3.Models
+
+@{
+    ViewBag.Title = "Details";
+    BlogPost bp = ViewBag.bp;
+}
+<div id="CenterBlogBar">
+    SINGLE POST
+</div>
+<div>
+    <div class="col-lg-3">
+
+    </div>
+    <div class="col-lg-6">
+        <img style="padding-top:60px" src="@Url.Content("~/Content/img/")@bp.Picture" alt="Alternate Text" />
+        <div>
+            <h2>@bp.Title</h2>
+            <h5>By @bp.Author.Name on @bp.DateCreated</h5>
+            <article>
+                <p>@bp.Content</p>
+            </article>
+            <a href="@Url.Action("Index", "Blog")" style="background:green !important;margin-bottom:30px" class="btn btn-primary btn-lg active" role="button">BACK TO BLOG</a>
+            <br />
+        </div>
+    </div>
+    <div class="col-lg-3">
+
+    </div>
+</div>

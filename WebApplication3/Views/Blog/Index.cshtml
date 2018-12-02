@@ -1,0 +1,71 @@
+﻿@model IEnumerable<WebApplication3.Models.BlogPost>
+@using WebApplication3.Models
+
+@{
+    ViewBag.Title = "Blog";
+    bool morePosts = true;
+    bool first = true;
+}
+
+<div id="CenterBlogBar">
+    BLOG
+</div>
+<div class="col-lg-3"></div>
+<div class="col-lg-6" id="CenterBlogHolder">
+
+    <div id="BlogPosts" class="col-lg-8">
+        @if (ViewBag.bp.Count > 0)
+        {
+            foreach (BlogPost post in ViewBag.bp)
+            {
+                if (!first)
+                {
+                    <hr class="BlogHR" />
+                }
+                <div class="WideBlogPost">
+                    <div class="BlogPostTopPart">
+                        <img src="@Url.Content("~/Content/img/")@post.Picture" />
+                        <div>
+                            <h2>@post.Title</h2>
+                            <h5>By @post.Author.Name on @post.DateCreated</h5>
+                            <article>
+                                <p>@post.Content</p>
+                            </article>
+                            <a style="margin-top:32px" href="@Url.Action("Details", "Blog", new { id=post.ID})" class="btn btn-primary btn-lg active" role="button">READ MORE</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                first = false;
+            }
+        }
+        else
+        {
+            morePosts = false;
+            <div>No more blog posts remaining</div>
+        }
+    </div>
+    @{ var rp = ViewBag.bpRecent; }
+    <div class="col-lg-4" id="BlogRecent">
+        <div class="TallBlogPost">
+            <h1>Recent Posts</h1>
+            <img src="@Url.Content("~/Content/img/")@rp.Picture" />
+            <div>
+                <h2>@rp.Title</h2>
+                <h5>By @rp.Author.Name on @rp.DateCreated</h5>
+                <article>
+                    <p>@rp.Content</p>
+                </article>
+                <a href="@Url.Action("SinglePost","Blog")" class="btn btn-primary btn-lg active" role="button">READ MORE</a>
+            </div>
+        </div>
+    </div>
+    <br />
+
+</div>
+<div id="NextPosts">
+    <a href="@Url.Action("Index","Blog",new { from= ViewBag.from+2})" class="btn btn-primary btn-lg active center-block" style="background:pink !important;text-align:center;margin-bottom:20px" role="button">LOAD MORE</a>
+</div>
+<div class="col-lg-3"></div>
+
