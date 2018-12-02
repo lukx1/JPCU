@@ -9,7 +9,7 @@ namespace WebApplication3.Models
 {
     public class MyContext : DbContext
     {
-        public DbSet<Osoba> Osoby { get; set; }
+        public DbSet<Person> People { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

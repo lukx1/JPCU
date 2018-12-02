@@ -1,0 +1,142 @@
+body {
+    font-family: "Comic Sans MS", serif;
+    margin:0;
+}
+
+header {
+    background-color: #EAE7E8;
+    height: 25%;
+    float:left;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    padding: 40px;
+}
+
+#TopHolder {
+    float: right;
+}
+
+
+#TopHolder div {
+    display: inline-block;
+    color: darkgray;
+    font-size: 100%;
+
+    padding-right: 75px;
+}
+
+#TopHolder div:hover .TopHidden {
+    display: block;
+    color:#c8c10d;
+}
+
+#TopHolder .TopHidden {
+    position:absolute;
+    display: none;
+
+}
+
+#TopHolder div a {
+    text-decoration: none;
+}
+
+#TopHolder a:hover {
+    color:#c8c10d !important;
+}
+
+#TopHolder a:first-child {
+    color:#E32A62;
+}
+
+header div {
+    vertical-align: center;
+    text-align: left;
+}
+
+#CenterImgHolder {
+    height: 660px;
+    background: #FBFBFB url("img/BackgroundImg.png") no-repeat center;
+    width: 100%;
+    float: left;
+}
+
+#CenterImgHolder img {
+    margin-left: 58%;
+    margin-top: 25%;
+}
+
+#GreenBar {
+    padding: 40px 0;
+    width: 100%;
+    float:left;
+    background: #C8C10D;
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+
+#GreenBarItemHolder div {
+    float: left;
+    height: 100%;
+    width: 25%;
+    text-align: center;
+    vertical-align: center;
+    color:white;
+}
+
+#Featured div {
+    width: 60%;
+}
+
+#Featured div h1 {
+    color:#E32A62;
+}
+#Featured div h3 {
+    margin-top:30px;
+    color: #666;
+}
+
+#Featured div {
+    color: gray;
+}
+
+#Featured {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    float:left;
+    text-align: left;
+    width: 100%;
+    height: 260px;
+    padding-top: 40px;
+    padding-bottom: 60px;
+    background: #EAE7E8 url("img/Brightness_Contrast 31.png") bottom no-repeat;
+}
+
+footer {
+    float: left;
+    width: 100%;
+    padding-top: 60px;
+    color: white;
+    height: 220px;
+    background: #CB3362;
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+    text-align: center;
+}
+
+#BottomIconHolder {
+
+}
+
+#CenterBlogBar {
+    width: 100%;
+    height: 100px;
+    float:left;
+    background-color: #4caf50;
+    font-size: 250%;
+    color:white;
+    text-align:center;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center;
+}
