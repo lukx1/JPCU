@@ -238,3 +238,102 @@ footer {
     justify-content: center; /* align horizontal */
     align-items: center;
 }
+
+#AboutHolder {
+    display:grid;
+    grid-template-columns:1fr 3fr;
+    grid-column-gap:12px;
+    float:left;
+}
+
+#AboutImgBar {
+    height:247px;
+    width:100%;
+    float:left;
+    background: gray url("img/aboutImg.png") center center no-repeat;
+    background-size:cover;
+}
+
+#AboutHolder a {
+    color:green;
+}
+
+#AboutHolder h1, #AboutHolder h2 {
+    color:pink;
+}
+
+#AboutLeft {
+    padding:12px;
+    background:#ddd;
+    margin-top:60px;
+    margin-bottom:100px;
+    line-height:3.5em;
+}
+
+#LocationBar {
+    float:left;
+    height:250px;
+    width:100%;
+    background:gray url("../../Content/img/contactbg.png") center center no-repeat;
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+}
+
+#LocationBar div {
+    background:rgba(255,255,255,0.8);
+    margin:40px 20px;
+    padding:6px;
+    width:70%;
+    height:auto;
+    
+    box-sizing:border-box;
+}
+
+#LocationBar div {
+    text-align:left;
+}
+
+#LocationBar div img {
+    height:100%;
+    margin-right:12px;
+    box-sizing:border-box;
+    float:left;
+    clear:left;
+}
+
+#LocationBar h1 {
+    color:pink;
+}
+
+#InquryForm {
+    width:100%;
+    float:left;
+}
+
+#InquryForm h1 {
+    color: pink;
+    margin-bottom:40px;
+}
+
+#InquryForm input {
+    display:block;
+    height:2em;
+    margin:12px 0;
+}
+
+#InquryForm input[type="submit"]{
+    background:white;
+    color:pink;
+    border:1px solid pink;
+    height:2em;
+    padding:6px;
+}
+
+.InlineInput {
+    display:inline;
+}
+
+.Inivs {
+    display:none;
+}

@@ -23,14 +23,15 @@
                         <div class="TopHidden"></div>
                     </div>
                     <div>
-                        <a href="">ABOUT</a><br>
+                        <a href="@Url.Action("About","Home")">ABOUT</a><br>
                         <div class="TopHidden"><a href="@Url.Action("Index","Product")">PRODUCTS</a></div>
                     </div>
                     <div>
                         <a href="@Url.Action("Index","Blog")">BLOG</a><br>
                         <div class="TopHidden"><a href="@Url.Action("Details","Blog", new { id=-1})">SINGLE POST</a></div>
                     </div>
-                    <div><a href="">CONTACT</a></div>
+                    <div><a href="@Url.Action("Contact","Home")">CONTACT</a></div>
+                    <div><a href="@Url.Action("Index","Login")">LOGIN</a></div>
                 </nav>
             </div>
         </div>
@@ -43,10 +44,10 @@
         <div></div>
         <div>
             <div id="BottomIconHolder">
-                <img src="~/Content/img/facebook.png" alt="Facebook">
-                <img src="~/Content/img/twitter.png" alt="Twitter">
-                <img src="~/Content/img/googleplus.png" alt="Google+">
-                <img src="~/Content/img/pinterest.png" alt="Pinterest">
+                <a href="#"><img src="~/Content/img/facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="~/Content/img/twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="~/Content/img/googleplus.png" alt="Google+"></a>
+                <a href="#"><img src="~/Content/img/pinterest.png" alt="Pinterest"></a>
             </div>
             <div id="FooterText">
                 <br>

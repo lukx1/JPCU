@@ -1,7 +1,9 @@
 ﻿@model WebApplication3.Models.BlogPost
 @using WebApplication3.Models
+@using WebApplication3.Misc
 
 @{
+    var sm = new SessionManager(Session);
     ViewBag.Title = "Details";
     BlogPost bp = ViewBag.bp;
 }
@@ -13,16 +15,36 @@
 
     </div>
     <div class="col-lg-6">
-        <img style="padding-top:60px" src="@Url.Content("~/Content/img/")@bp.Picture" alt="Alternate Text" />
-        <div>
-            <h2>@bp.Title</h2>
-            <h5>By @bp.Author.Name on @bp.DateCreated</h5>
-            <article>
-                <p>@bp.Content</p>
-            </article>
-            <a href="@Url.Action("Index", "Blog")" style="background:green !important;margin-bottom:30px" class="btn btn-primary btn-lg active" role="button">BACK TO BLOG</a>
-            <br />
-        </div>
+
+        @if (!sm.IsUserLoggedIn())
+        {
+            <img style="padding-top:60px" src="@Url.Content("~/Content/img/")@bp.Picture" alt="Alternate Text" />
+            <div>
+                <h2>@bp.Title</h2>
+                <h5>By @bp.Author.Name on @bp.DateCreated</h5>
+                <article>
+                    <p>@bp.Content</p>
+                </article>
+                <a href="@Url.Action("Index", "Blog")" style="background:green !important;margin-bottom:30px" class="btn btn-primary btn-lg active" role="button">BACK TO BLOG</a>
+                <br />
+            </div>
+        }
+        else
+        {
+            <form action="@Url.Action("Edit","Blog")" method="post">
+                <img style="padding-top:60px" src="@Url.Content("~/Content/img/")@bp.Picture" alt="Alternate Text" /><br />
+                <input class="invisible" type="text" name="ID" value="@bp.ID" />
+                <div>
+                    <label for="Title">Title:</label>
+                    <input id="Title" class="InlineInput form-control" type="text" name="Title" value="@bp.Title" /><br />
+                    <h5>By @bp.Author.Name on @bp.DateCreated</h5>
+                    Content:<br />
+                    <textarea style="min-height:6em" class="form-control" name="Content">@bp.Content</textarea>
+                    <br />
+                </div>
+                <button style="margin-bottom:12px" class="btn btn-primary btn-lg active" type="submit">CHANGE</button>
+            </form>
+        }
     </div>
     <div class="col-lg-3">
 

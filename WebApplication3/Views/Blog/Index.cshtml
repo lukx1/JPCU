@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<WebApplication3.Models.BlogPost>
 @using WebApplication3.Models
+@using WebApplication3.Misc
 
 @{
+    var sm = new SessionManager(this.Session);
     ViewBag.Title = "Blog";
     bool morePosts = true;
     bool first = true;
@@ -13,7 +15,12 @@
 <div class="col-lg-3"></div>
 <div class="col-lg-6" id="CenterBlogHolder">
 
+    
     <div id="BlogPosts" class="col-lg-8">
+        @if (sm.IsUserLoggedIn())
+        {
+            <a style="background-color:darkorange !important;margin-top:12px" href="@Url.Action("Create", "Blog")" class="btn btn-primary btn-lg active" role="button">CREATE</a>
+        }
         @if (ViewBag.bp.Count > 0)
         {
             foreach (BlogPost post in ViewBag.bp)
@@ -32,6 +39,11 @@
                                 <p>@post.Content</p>
                             </article>
                             <a style="margin-top:32px" href="@Url.Action("Details", "Blog", new { id=post.ID})" class="btn btn-primary btn-lg active" role="button">READ MORE</a>
+                            @if (sm.IsUserLoggedIn())
+                            {
+                                <a style="margin-top:32px;background-color:orange !important" href="@Url.Action("Details", "Blog", new { id = post.ID })" class="btn btn-primary btn-lg active" role="button">EDIT</a>
+                                <a style="margin-top:32px;background-color:red !important" href="@Url.Action("Delete", "Blog", new { id = post.ID })" class="btn btn-primary btn-lg active" role="button">DELETE</a>
+                            }
                         </div>
 
                     </div>
@@ -58,6 +70,12 @@
                     <p>@rp.Content</p>
                 </article>
                 <a href="@Url.Action("SinglePost","Blog")" class="btn btn-primary btn-lg active" role="button">READ MORE</a>
+                <br />
+                @if (sm.IsUserLoggedIn())
+                {
+                    <a style="margin-top:4px;background-color:orange !important" href="@Url.Action("Details", "Blog", new { id = rp.ID })" class="btn btn-primary btn-lg active" role="button">EDIT</a>
+                    <a style="margin-top:4px;background-color:red !important" href="@Url.Action("Delete", "Blog", new { id = rp.ID })" class="btn btn-primary btn-lg active" role="button">DELETE</a>
+                }
             </div>
         </div>
     </div>

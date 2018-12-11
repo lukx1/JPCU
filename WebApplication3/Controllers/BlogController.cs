@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication3.Misc;
 using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
@@ -30,7 +31,7 @@ namespace WebApplication3.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             BlogPost blogPost = null;
             if (id < 0)
@@ -59,9 +60,11 @@ namespace WebApplication3.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,IDAuthor,Title,DateCreated,Content,Picture")] BlogPost blogPost)
+        public ActionResult Create([Bind(Include = "Title,Content")] BlogPost blogPost)
         {
+            blogPost.IDAuthor = new SessionManager(this).LoggedInUser.ID;
+            blogPost.DateCreated = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 db.BlogPosts.Add(blogPost);
@@ -72,35 +75,27 @@ namespace WebApplication3.Controllers
             return View(blogPost);
         }
 
-        // GET: Blog/Edit/5
-        public ActionResult Edit(int? id)
+        [HttpPost]
+        public ActionResult Edit([Bind(Include = "ID,Title,Content")]BlogPost bp)
         {
-            if (id == null)
+            if (bp == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BlogPost blogPost = db.BlogPosts.Find(id);
-            if (blogPost == null)
-            {
-                return HttpNotFound();
-            }
-            return View(blogPost);
-        }
 
-        // POST: Blog/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,IDAuthor,Title,DateCreated,Content,Picture")] BlogPost blogPost)
-        {
-            if (ModelState.IsValid)
+            var bpInDB = db.BlogPosts.Find(bp.ID);
+            if(bpInDB == null)
             {
-                db.Entry(blogPost).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(blogPost);
+
+            //bpInDB.Picture = bp.Picture;
+            bpInDB.Title = bp.Title;
+            bpInDB.Content = bp.Content;
+            db.SaveChanges();
+
+            return RedirectToAction("Details", new { id = bp.ID });
+            //return View("Details","Blog",new { id = bp.ID});
         }
 
         // GET: Blog/Delete/5
@@ -108,14 +103,18 @@ namespace WebApplication3.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Index");
             }
             BlogPost blogPost = db.BlogPosts.Find(id);
-            if (blogPost == null)
+            if(blogPost == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("index");
             }
-            return View(blogPost);
+
+            db.BlogPosts.Remove(blogPost);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         // POST: Blog/Delete/5

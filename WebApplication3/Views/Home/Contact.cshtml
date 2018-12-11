@@ -1,17 +1,36 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
-
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div id="CenterBlogBar">
+    CONTACT
+</div>
+<div id="LocationBar">
+    <div>
+        <img src="~/Content/img/check-in.png" alt="Check in" />
+        <h1>UNIT 0123, ABC BUILDING, BUSSINESS PARK</h1>
+        <p>Lorem ipsum sit dormet.Lorem ipsum sit dormet.Lorem ipsum sit dormet.Lorem ipsum sit dormet.Lorem ipsum sit dormet.</p>
+    </div>
+</div>
+<div id="InquryForm">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6" >
+        <div id="Contact">
+            <h1 style="margin-bottom:0;margin-top:20px;display:inline">INQURY FROM</h1>
+            <br />
+            <form action="/" style="float:left" method="post">
+                <input type="text" placeholder="Name" name="Name" value="" />
+                <input type="email" placeholder="Email" name="Email" value="" />
+                <input type="tel" placeholder="Subject" name="Subject" value="" />
+                <textarea style="color:lightgray" name="Message" placeholder="Message" cols="50" rows="10">Share your thoughts</textarea>
+                <br />
+                <button style="padding:10px;background:white;border:1px solid pink;color:pink;margin-top:6px" type="submit" name="Send" id="Submit">SUBMIT</button>
+            </form>
+        </div>
+        <div style="background:lightgray;float:right; width:20%;padding:10px" id="Section">
+            <h1>WE'D LOVE TO HEAR FROM YOU</h1>
+            <p>Lorem ipsum sit dormet.Lorem ipsum sit dormet.</p>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3"></div>

@@ -33,6 +33,7 @@ namespace WebApplication3.Models
                 .HasForeignKey<int>(r => r.IDCategory);
         }
 
+        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<BlogPost> BlogPosts { get; set; }
         public virtual DbSet<Product> Products { get; set; }
