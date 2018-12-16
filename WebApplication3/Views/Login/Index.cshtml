@@ -11,9 +11,25 @@
         {
             <h2 class="text-success">Logged in as @sm.LoggedInUser.Name</h2>
         }
-        <h2>Name</h2>
+        @if (ViewBag.Status != null)
+        {
+            <h2 class="text-danger">@ViewBag.Status</h2>
+        }
+        @if (ViewBag.Error != null && ViewBag.Error)
+        {
+            
+            <style>
+                input {
+                    border:1px solid red !important;
+                }
+                .NamePass {
+                    color:darkred;
+                }
+            </style>
+        }
+        <h2 class="NamePass">Name</h2>
         <input class="form-control" type="text" name="name" value="" />
-        <h2>Password</h2>
+        <h2 class="NamePass">Password</h2>
         <input class="form-control" type="password" name="pass" value="" />
         <br />
         <button style="margin-bottom:12px" name="Submit" value="Submit" class="btn btn-primary btn-lg active" type="submit">

@@ -43,24 +43,32 @@ namespace WebApplication3.Controllers
             return IndexRoutine();
         }
 
-
         [HttpPost]
-        public ActionResult Login(string name, string pass, bool? LogOut)
+        public ActionResult Login(string name, string pass, string Submit)
         {
+            if(Submit == "LogOut")
+            {
+                new SessionManager(this).LogOut();
+                ViewBag.Status = "Logged out";
+                return View("Index");
+            }
             var user = sql.Users.Where(r => r.Login == name).FirstOrDefault();
             if(user == null)
             {
                 ViewBag.Status = "User not found";
+                ViewBag.Error = true;
                 return View("Index");
             }
 
             if (!user.HasPermission(Misc.Permission.Login))
             {
                 ViewBag.Status = "You don't have the required permissions";
+                ViewBag.Error = true;
             }
             else if (!PasswordFactory.ComparePasswordsPbkdf2(pass, user.Password))
             {
                 ViewBag.Status = "Incorrect name or password";
+                ViewBag.Error = true;
             }
             else
             {

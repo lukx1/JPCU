@@ -20,6 +20,14 @@ namespace WebApplication3.Misc
             this.Session = sessionStateBase;
         }
 
+        public bool LogOut()
+        {
+            if (LoggedInUser == null)
+                return false;
+            LoggedInUser = null;
+            return true;
+        }
+
         public User LoggedInUser
         {
             get
