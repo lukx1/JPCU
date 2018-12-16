@@ -1,16 +1,30 @@
-﻿
+﻿@using WebApplication3.Misc
 @{
+    var sm = new SessionManager(Session);
     ViewBag.Title = "Login";
 }
 
-<form action="@Url.Action("Login","Login")" method="post">
-    <p>@ViewBag.Status</p>
-    <h2>Name</h2>
-    <input type="text" name="name" value="" />
-    <h2>Password</h2>
-    <input type="password" name="pass" value="" />
-    <br />
-    <button type="submit">
-        SUBMIT
-    </button>
-</form>
+<div class="col-md-3"></div>
+<div class="col-md-6">
+    <form action="@Url.Action("Login","Login")" method="post">
+        @if (sm.IsUserLoggedIn())
+        {
+            <h2 class="text-success">Logged in as @sm.LoggedInUser.Name</h2>
+        }
+        <h2>Name</h2>
+        <input class="form-control" type="text" name="name" value="" />
+        <h2>Password</h2>
+        <input class="form-control" type="password" name="pass" value="" />
+        <br />
+        <button style="margin-bottom:12px" name="Submit" value="Submit" class="btn btn-primary btn-lg active" type="submit">
+            SUBMIT
+        </button>
+        @if (sm.IsUserLoggedIn())
+        {
+        <button style="margin-bottom:12px" name="Submit" value="LogOut" class="btn btn-danger btn-lg active" type="submit">
+            LOG OUT
+        </button>
+        }
+    </form>
+</div>
+<div class="col-md-3"></div>

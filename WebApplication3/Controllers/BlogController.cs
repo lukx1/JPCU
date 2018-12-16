@@ -53,6 +53,8 @@ namespace WebApplication3.Controllers
         // GET: Blog/Create
         public ActionResult Create()
         {
+            if (!new SessionManager(this).IsUserLoggedIn())
+                return RedirectToAction("Index");
             return View();
         }
 
@@ -62,6 +64,9 @@ namespace WebApplication3.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "Title,Content")] BlogPost blogPost)
         {
+            if (!new SessionManager(this).IsUserLoggedIn())
+                return RedirectToAction("Index");
+
             blogPost.IDAuthor = new SessionManager(this).LoggedInUser.ID;
             blogPost.DateCreated = DateTime.Now;
 
@@ -101,6 +106,9 @@ namespace WebApplication3.Controllers
         // GET: Blog/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (!new SessionManager(this).IsUserLoggedIn())
+                return RedirectToAction("Index");
+
             if (id == null)
             {
                 return RedirectToAction("Index");
@@ -122,6 +130,8 @@ namespace WebApplication3.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (!new SessionManager(this).IsUserLoggedIn())
+                return RedirectToAction("Index");
             BlogPost blogPost = db.BlogPosts.Find(id);
             db.BlogPosts.Remove(blogPost);
             db.SaveChanges();

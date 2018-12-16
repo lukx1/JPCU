@@ -45,7 +45,7 @@ namespace WebApplication3.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(string name, string pass)
+        public ActionResult Login(string name, string pass, bool? LogOut)
         {
             var user = sql.Users.Where(r => r.Login == name).FirstOrDefault();
             if(user == null)
